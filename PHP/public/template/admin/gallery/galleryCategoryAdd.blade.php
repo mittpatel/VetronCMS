@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en-US">
+@include('admin/common/head')
+
+<body>
+
+<div class="container">
+    <!-- WRAPPER -->
+    <div id="wrapper" class="clearfix">
+
+        @include('admin/common/nav')
+
+        @include('admin/common/header')
+
+        <section id="middle">
+            @include('admin/common/crumbs')
+            <div id="content" class="dashboard padding-20">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <!-- ------ -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading panel-heading-transparent">
+                                <strong>{{admin_language('common_add')}}</strong>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <form method="post" id="categoryForm">
+                                    <fieldset>
+                                        {{csrf_field()}}
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <label>{{admin_language('common_name')}}
+                                                        ({{admin_language('common_languageKey')}})
+                                                    </label>
+                                                    <span style="color: red;"></span>
+                                                    <input onchange="checkLangKeyOnly($(this).val(),2,this)"
+                                                           type="text" name="language_key"
+                                                           value="{{$data->language_key}}"
+                                                           val="1"
+                                                           class="form-control required">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <label>
+                                                        {{admin_language('menu_LanguageValue')}}
+                                                        {{--<apan style="font-size: 14px;"><b>+</b></apan>--}}
+                                                        <span style="cursor:pointer" onclick="$(this).next().show();$(this).hide();$('.languageVal').show();" id="" class="glyphicon glyphicon-plus"></span>
+                                                        <span onclick="$(this).prev().show();$(this).hide();$('.languageVal').hide();" style="display: none;cursor:pointer" id="" class="glyphicon glyphicon-minus"></span>
+                                                    </label>
+                                                    <div style="display: none;" class="languageVal">
+                                                        @foreach($language as $l)
+                                                            <input placeholder="{{admin_language($l->language_key)}}"
+                                                                   style='margin-top: 3px;' type="text"
+                                                                   name="lang[{{$l->folder}}]"
+                                                                   value=""
+                                                                   class="form-control required">
+                                                        @endforeach
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <label>{{admin_language('article_category')}} *</label>
+                                                    <select name="pid" class="form-control pointer required">
+                                                        <option value="0">{{admin_language('menu_topLevel')}}</option>
+                                                        @foreach($categoryList as $categoryListVal)
+                                                            <option value="{{$categoryListVal->id}}">
+                                                                {{str_repeat("─ ",$categoryListVal->level)}}
+                                                                {{$categoryListVal->language_key}}
+                                                            </option>
+                                                        @endforeach
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <label>{{admin_language('common_status')}}</label>
+                                                    <div class="sky-form">
+                                                        <label style="display: inline-block;" class="radio">
+                                                            <input type="radio"
+                                                                   name="status"
+                                                                   value="1"
+                                                                   checked="checked"><i></i> <span
+                                                                    class="text-primary">{{admin_language('common_enabled')}}</span></label>
+                                                        <label style="display: inline-block;" class="radio"><input
+                                                                    type="radio"
+                                                                    name="status"
+                                                                    value="2"><i></i> <span
+                                                                    class="text-warning">{{admin_language('common_disabled')}}</span></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <div style="display: flex;align-items: flex-start">
+                                                        <label>
+                                                            {{admin_language('common_cover')}}
+                                                        </label>
+                                                        <label style="margin-left: 12px;">
+                                                            <img id="logoID" style="height: 50px;display: none;" src="">
+                                                        </label>
+                                                    </div>
+                                                    <div class="fancy-file-upload fancy-file-primary">
+                                                        <i class="fa fa-upload"></i>
+                                                        <input type="file" class="form-control" name="cover[]"
+                                                               id="logologo"
+                                                               onchange="jQuery(this).next('input').val(this.value);ajaxUploadHeader(this);uploadsImg(this)">
+                                                        <input type="text" class="form-control" placeholder=""
+                                                               readonly="">
+                                                        <span class="button">选择文件</span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <label>
+                                                        {{admin_language('common_note')}}
+                                                    </label>
+                                                    <textarea class="form-control" rows="5" name="note"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button onclick="submitCategory()" type="button"
+                                                        class="btn btn-primary">
+                                                    {{admin_language('common_submit')}}
+                                                </button>
+                                                <button style="margin-left: 10px;" type="button" onclick="window.history.go(-1);" class="btn btn-success">
+                                                    {{admin_language('common_Return')}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <input type="hidden" name="cover" value="">
+
+
+                                </form>
+
+                            </div>
+
+                        </div>
+                        <!-- /----- -->
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            @include('admin/common/footer')
+        </section>
+
+    </div>
+</div>
+
+@include('admin/common/js')
+<script>
+    function submitCategory() {
+        var submitCategory = layer.load();
+
+        $.ajax({
+            type: 'post',
+            url: window.location.href,
+            data: $('#categoryForm').serialize(),
+            success: function (data) {
+                data = $.parseJSON(data);
+                if (data.status == 1) {
+                    layer.close(submitCategory);
+                    layer.msg(data.msg);
+                    setTimeout(function () {
+                        window.location = data.url;
+                    }, 1000);
+                } else layer.msg(data.msg);
+                layer.close(submitCategory);
+            }
+        });
+    }
+    function ajaxUploadHeader(e) {
+        var ajaxHeader = layer.load();
+        ajaxUpload({
+            e: e,
+            url: "{{url('admin/gallery/category/ajaxUpload')}}",
+            token: "{{csrf_token()}}"
+        }, function (data) {
+            layer.close(ajaxHeader);
+            if (data.status == 1) {
+                $(":input[name=cover]").val(data.path);
+                $("#logoID").prop('src', data.url).show();
+            } else {
+                layer.msg(data.msg);
+            }
+        });
+    };
+</script>
+</body>
+</html>

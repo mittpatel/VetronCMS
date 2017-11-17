@@ -1,0 +1,76 @@
+.attribute-box .sky-form .checkbox input + i:after {
+    color: #676a6c;
+}
+
+.attribute-box .sky-form .radio input:checked + i, .sky-form .checkbox input:checked + i, .sky-form .toggle input:checked + i {
+    border-color: #676a6c;
+}
+
+.attribute-box .sky-form .radio input + i:after {
+    background-color: #676a6c;
+}
+
+td {
+    vertical-align: middle !important;
+}
+.userinfo .info .useremail {
+    font-size: 14px;
+    line-height: 1.35;
+}
+.userinfo img{
+    border-radius: 0;
+}
+
+.userinfo .info {
+    padding: 8px 0px 8px 74px;
+}
+#header .logo-text {
+    display: block;
+    height: 50px;
+    width: 185px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 26px;
+    color: white;
+}
+
+.test_email {
+    position: absolute;
+    right: 15px;
+    bottom: 0px;
+}
+.ale_img {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 9999999 !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.on-line-body {
+    /*width: 920px;*/
+    height: 100%;
+    /*background-color: #;*/
+    padding: 10px;
+}
+
+.on-line-body .box-on-line {
+    width: 170px;
+    height: 125px;
+    margin: 5px;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.on-line-body .box-on-line .box-on-line-box {
+    height: 105px;
+    width: 170px;
+    background-color: #E3E0E0;
+    cursor: pointer;
+}

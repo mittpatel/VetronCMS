@@ -1,0 +1,11 @@
+{
+  "name": "example-plugin",
+  "version": "1.2",
+  "title": "示例插件",
+  "description": "示例插件",
+  "author": "printempw",
+  "url": "",
+  "namespace": "Blessing\\ExamplePlugin",
+  "config": "config.tpl",
+  "avatar":"assets/img/avatar.jpg"
+}

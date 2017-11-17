@@ -1,0 +1,11 @@
+{
+  "name": "longjinwen",
+  "version": "1.1",
+  "title": "示例插件",
+  "description": "示例插件",
+  "author": "printempw",
+  "url": "",
+  "namespace": "Blessing\\Longjinwen",
+  "config": "config.tpl",
+  "avatar":"assets/img/avatar.jpg"
+}

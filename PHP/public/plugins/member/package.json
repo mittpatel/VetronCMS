@@ -1,0 +1,15 @@
+{
+  "name": "member",
+  "version": "1.0",
+  "title": "示例插件",
+  "description": "示例插件",
+  "author": "Henry",
+  "url": "",
+  "namespace": "Blessing\\Member",
+  "config": "config.tpl",
+  "avatar":"assets/img/avatar.png",
+  "setting":{
+      "default":"setting/member/default",
+      "more":"setting/member/more"
+  }
+}

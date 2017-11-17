@@ -1,0 +1,50 @@
+.login_tips{
+    color: red;
+}
+
+.head_img{
+    width: 200px;
+    height: 200px;
+}
+
+.input_bottom{
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.margin_botton2{
+    margin-bottom: 2px;
+}
+
+/*login logo*/
+
+.login_logo{
+    /*width: 150px;*/
+    /*height: auto;*/
+    /*background-color: #ccc;*/
+    margin-bottom: 30px;
+    text-align:center;
+}
+.login-box{
+    margin-top: 6%;
+}
+
+.login_logo  span{
+     display: block;
+    height: 20px;
+    width: auto;
+    margin:  0 auto;
+    text-align: center;
+}
+
+.login_logo div{
+    margin: 0 auto;
+    width: 84px;
+}
+.login_logo img{
+    /*width: 84px;*/
+    height: 140px;
+}
+.head_text{
+    line-height: 50px;color: #fff;font-size: 16px;width:180px;text-align: center;
+}
